@@ -1,2 +1,19 @@
+# Python venv
 venv/
+.env
 __pycache__/
+*.pyc
+
+# Tests
+tests/
+
+# Archivos y carpetas ocultas innecesarias
+.git
+.gitignore
+.env
+*.log
+.DS_Store
+
+# Archivos de configuración de editor
+.vscode/
+.idea/

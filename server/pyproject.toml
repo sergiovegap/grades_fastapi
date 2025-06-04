@@ -1,0 +1,19 @@
+[project]
+name = "src"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[standard]==0.115.12",
+    "uvicorn[standard]==0.34.2",
+    "psycopg2-binary",
+    "pydantic==2.11.4",
+    "SQLAlchemy==2.0.40",
+    "alembic==1.16.1",
+    "nanoid==2.0.0"
+]
+
+[tool.setuptools.packages.find]
+where = ["./"]
+include = ["src"]

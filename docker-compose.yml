@@ -1,47 +1,49 @@
-
 services:
-  fastapi:
-    image: image-grades-fastapi
-    build: ./server
-    container_name: grades_fastapi
-    # environment:
-    #   - UVICORN_RELOAD=true
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./:/server
-  # db:
-  #   image: postgres:13
-  #   container_name: postgres-db
-  #   environment:
-  #     POSTGRES_USER: user
-  #     POSTGRES_PASSWORD: password
-  #     POSTGRES_DB: fastapi_db
-  #   ports:
-  #     - "5432:5432"
-  #   volumes:
-  #     - postgres_data:/var/lib/postgresql/data
-  #   networks:
-  #     - fastapi-network
+    fastapi:
+        image: grades-fastapi
+        container_name: fastapi_devcontainer
+        workdir: /app
+        build: .
+        environment:
+        - UVICORN_RELOAD=true
+        volumes:
+        - ./server:/app/src
+        ports:
+        - "8000:8000"
+        command: uv run src.main:app --host 0.0.0.0 --port 8000 --reload
+
+    # db:
+    #   image: postgres:13
+    #   container_name: postgres-db
+    #   environment:
+    #     POSTGRES_USER: user
+    #     POSTGRES_PASSWORD: password
+    #     POSTGRES_DB: fastapi_db
+    #   ports:
+    #     - "5432:5432"
+    #   volumes:
+    #     - postgres_data:/var/lib/postgresql/data
+    #   networks:
+    #     - fastapi-network
 
 
-    # build: .
-    # container_name: fastapi-app
-    # ports:
-    #   - "8000:8000"
-    # depends_on:
-    #   - db
-    # networks:
-    #   - fastapi-network
+        # build: .
+        # container_name: fastapi-app
+        # ports:
+        #   - "8000:8000"
+        # depends_on:
+        #   - db
+        # networks:
+        #   - fastapi-network
+        # volumes:
+        #   - .:/workspace
+        # environment:
+        #   DATABASE_URL: postgres://user:password@db/fastapi_db
+        # command: ["uvicorn", "app.main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
+
     # volumes:
-    #   - .:/workspace
-    # environment:
-    #   DATABASE_URL: postgres://user:password@db/fastapi_db
-    # command: ["uvicorn", "app.main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
+    #   postgres_data:
 
-# volumes:
-#   postgres_data:
-
-# networks:
-#   fastapi-network:
-#     driver: bridge
+    # networks:
+    #   fastapi-network:
+    #     driver: bridge
