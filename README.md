@@ -7,6 +7,4 @@ This is a software for schools that need to manage personnel, students, subjects
 
 #### Technologies used:
 
-![Python](https://api.iconify.design/vscode-icons:file-type-python.svg)
-
-![FastAPI](https://api.iconify.design/logos:fastapi-icon.svg)
+<img src="https://api.iconify.design/vscode-icons:file-type-python.svg" height="25"> <img src="https://api.iconify.design/logos:fastapi-icon.svg" height="25">
