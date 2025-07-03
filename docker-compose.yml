@@ -1,16 +1,57 @@
 services:
     fastapi:
-        image: grades-fastapi
-        container_name: fastapi_devcontainer
-        workdir: /app
+        image: school_fastapi
+        container_name: server
         build: .
         environment:
         - UVICORN_RELOAD=true
         volumes:
-        - ./server:/app/src
+        - ./server:/app
         ports:
         - "8000:8000"
-        command: uv run src.main:app --host 0.0.0.0 --port 8000 --reload
+        command: "uv run uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload"
+
+    vue:
+        image: school_vue
+        container_name: client
+        volumes:
+            - ./client:/app
+            - /app/node_modules
+        ports:
+        - "5173:5173"
+        command: "npm run dev"
+
+# Opción 2 (probar)
+# version: "3.9"
+
+# services:
+#   fastapi:
+#     image: school_fastapi           # Imagen personalizada
+#     container_name: server
+#     build:
+#       context: ./server             # 🔍 Mejora: separa el contexto del backend
+#       dockerfile: Dockerfile        # (opcional si tu Dockerfile está en ./server)
+#     environment:
+#       - UVICORN_RELOAD=true
+#     volumes:
+#       - ./server:/app               # Código local montado dentro del contenedor
+#     ports:
+#       - "8000:8000"
+#     command: uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
+
+#   vue:
+#     image: school_vue
+#     container_name: client
+#     build:
+#       context: ./client             # 🔍 Mejora: asegúrate de que se construya la imagen
+#       dockerfile: Dockerfile        # si usas uno en ./client
+#     volumes:
+#       - ./client:/app
+#       - /app/node_modules           # Evita conflictos de node_modules entre host y contenedor
+#     ports:
+#       - "5173:5173"
+#     command: npm run dev
+
 
     # db:
     #   image: postgres:13
@@ -26,20 +67,6 @@ services:
     #   networks:
     #     - fastapi-network
 
-
-        # build: .
-        # container_name: fastapi-app
-        # ports:
-        #   - "8000:8000"
-        # depends_on:
-        #   - db
-        # networks:
-        #   - fastapi-network
-        # volumes:
-        #   - .:/workspace
-        # environment:
-        #   DATABASE_URL: postgres://user:password@db/fastapi_db
-        # command: ["uvicorn", "app.main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
 
     # volumes:
     #   postgres_data:

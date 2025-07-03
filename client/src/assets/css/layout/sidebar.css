@@ -1,0 +1,36 @@
+.main-container {
+    position: fixed;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--sidebar-color);
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.sidebar-container {
+    height: 100vh;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: .5em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    margin: 1.5em;
+}
+
+.sidebar-icon a svg {
+    color: gray;
+    margin: 0.5em;
+}
+
+.sidebar-icon a svg:hover {
+    color: var(--accent-color);
+}
+
+.sidebar-icon a:active {
+    background-color: var(--white-color);
+    border-radius: var(--radius-lg) /* 0.5rem = 8px */;
+}

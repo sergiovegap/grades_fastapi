@@ -1,0 +1,11 @@
+/* Custom Tailwind */
+@theme {
+  --accent-color: #6096ba;
+  --sidebar-color: #F8F8F8;
+  --white-color: #FFFFFF;
+}
+
+/* .accent-color {
+  background-color: var(--accent-color);
+} */
+

@@ -17,7 +17,7 @@ app.add_middleware(
 
 @app.get("/")
 async def root():
-    return {"message": "Sistema de administración de materias y calificaciones"}
+    return {"message": "School management software"}
 
 
 app.include_router(router=users_router)
